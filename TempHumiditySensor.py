@@ -2,8 +2,8 @@ import adafruit_dht
 import board
 
 class TempHumiditySensor:
-    currentTemp = 0.0
-    currentHumidity = 0.0
+    currentTemp = 0.1
+    currentHumidity = 0.1
 
     def __init__(self, pin):
         #For Creating a new instance of our class. Takes a board pin object which is used to
@@ -21,3 +21,10 @@ class TempHumiditySensor:
             self.currentHumidity = self.DHTSensor.humidity
         except RuntimeError as e:
             self.currentHumidity = self.currentHumidity
+    
+    def getTemp(self):
+        # Takes no Arguments. Returns Temp in F
+        return ((self.currentTemp*9)/5)+32
+
+    def getHumidity(self):
+        return self.currentHumidity
