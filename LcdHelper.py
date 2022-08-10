@@ -1,24 +1,22 @@
 from signal import signal, SIGTERM, SIGHUP, pause
 from rpi_lcd import LCD
 
-lcd = LCD()
+class LcdHelper:
+    lcd = LCD()
 
-def safe_exit(signum, frame):
-    exit(1)
+    def safe_exit(signum, frame):
+        exit(1)
 
-signal(SIGTERM, safe_exit)
-signal(SIGHUP, safe_exit)
+    def printSensorInfo(self, coolSideTemp, coolSideHumidity, warmSideTemp, warmSideHumidity):
+        tempColumnString = "  " + coolSideTemp + " F ||  " + warmSideTemp + " F "
+        humidityColumnString = " " + coolSideHumidity + "% HUM || " + warmSideHumidity + "% HUM "
+        self.lcd.text("Cool Side||Warm Side", 1)
+        self.lcd.text("---------||---------", 2)
+        self.lcd.text(tempColumnString, 3)
+        self.lcd.text(humidityColumnString, 4)
 
-try:
-    lcd.text("Cool Side||Warm Side", 1)
-    lcd.text("---------||---------", 2)
-    lcd.text("  77.6 F ||  98.2 F ", 3)
-    lcd.text(" 40% HUM || 32% HUM ", 4)
-    pause()
 
-except KeyboardInterrupt:
-    pass
+    #signal(SIGTERM, safe_exit)
+    #signal(SIGHUP, safe_exit)
 
-finally:
-    lcd.clear()
 

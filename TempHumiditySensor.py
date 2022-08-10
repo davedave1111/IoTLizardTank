@@ -24,7 +24,7 @@ class TempHumiditySensor:
     
     def getTemp(self):
         # Takes no Arguments. Returns Temp in F
-        return ((self.currentTemp*9)/5)+32
+        return str(round(((self.currentTemp*9)/5)+32, 1))
 
     def getHumidity(self):
-        return self.currentHumidity
+        return str(self.currentHumidity)
