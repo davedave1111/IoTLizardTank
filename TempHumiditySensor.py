@@ -8,7 +8,7 @@ class TempHumiditySensor:
     def __init__(self, pin):
         #For Creating a new instance of our class. Takes a board pin object which is used to
         #instatiate the dht11 object
-        self.DHTSensor = adafruit_dht.DHT11(pin)
+        self.DHTSensor = adafruit_dht.DHT22(pin)
 
     def readTemp(self):
         try:
