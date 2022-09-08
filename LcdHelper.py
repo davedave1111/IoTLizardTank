@@ -9,7 +9,7 @@ class LcdHelper:
 
     def printSensorInfo(self, coolSideTemp, coolSideHumidity, warmSideTemp, warmSideHumidity):
         tempColumnString = "  " + coolSideTemp + " F ||  " + warmSideTemp + " F "
-        humidityColumnString = " " + coolSideHumidity + "% HUM || " + warmSideHumidity + "% HUM "
+        humidityColumnString = "  " + coolSideHumidity + "%  ||  " + warmSideHumidity + "% "
         self.lcd.text("Cool Side||Warm Side", 1)
         self.lcd.text("---------||---------", 2)
         self.lcd.text(tempColumnString, 3)

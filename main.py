@@ -22,4 +22,5 @@ while(True):
     #print("Temp: {:.1f} *C \t Humidity: {}%".format(warmSideSensor.currentTemp, warmSideSensor.currentHumidity))
     #print(warmSideSensor.currentTemp + "    " + warmSideSensor.currentHumidity)
     time.sleep(1)
+
     
