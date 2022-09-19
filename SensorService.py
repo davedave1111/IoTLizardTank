@@ -13,19 +13,19 @@ class SensorService:
 
     self.currentSensorData = ((0,0), (0,0))
     self.referenceTime = 0
-    
+
     def __new__(cls):
         # Creates singleton SensorService instance. If it already exists,
         # This will return the object that already exists. Beyond that, it inits sensors
         if not hasattr(cls, 'instance'):
             cls.instance = super(SensorService, cls).__new__(cls)
             
-            # Create two sensors corrosponding to the warm and cool sides of  the tank
+            # Create two sensors corresponding to the warm and cool sides of  the tank
             self.warmSideSensor = TempHumiditySensor(Settings.WARM_SIDE_SENSOR)
             self.coolSideSensor = TempHumiditySensor(Settings.COOL_SIDE_SENSOR)
         return cls.instance
 
-    def update():
+    def update(self):
         # Update function that takes no arguments. Will be used to service 
         # this class through main. This method does some light state tracking
         # by keeping track of the time to know when to poll sensors for data 
@@ -58,11 +58,11 @@ class SensorService:
         return # return from the function
 
 
-    def getSensorInfo():
+    def getSensorInfo(self):
         # Takes no arguements. Returns nested touple, first touple is data from 
         # cool side sensor, second is warm side sensor. Both of the internal touples 
         # start with temp, end with humidity of the sensor.
-        return currentSensorData
+        return self.currentSensorData
         
 
 
