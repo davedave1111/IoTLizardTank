@@ -8,7 +8,7 @@ class LcdHelper:
     def safe_exit(signum, frame):
         exit(1)
 
-    def printSensorInfo(self, ((coolSideTemp, coolSideHumidity),(warmSideTemp, warmSideHumidity))):
+    def printSensorInfo(self, coolSideTemp, coolSideHumidity, warmSideTemp, warmSideHumidity):
         # takes the nested tuple format we use to store and pass around sensor data. Returns nothing. Prints
         # data to LCD screen
         tempColumnString = "  " + coolSideTemp + " F ||  " + warmSideTemp + " F "

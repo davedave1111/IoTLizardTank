@@ -1,9 +1,9 @@
 import stat
 import time
 import Settings
-
 from LcdHelper import LcdHelper
-from TempHumiditySensor import TempHumiditySensor
+from SensorService import SensorService
+
 # Here is the main loop of the program. Most of the logic is taken care of 
 # externally, so it's pretty bare. 
 
@@ -13,9 +13,7 @@ statDisplay = LcdHelper()
 
 while(True):
     SensorService.update() # Update sensor
-    statDisplay.printSensorInfo(SensorService.getSensorInfo()) # Display updated information on LCD
-    
-    
+    statDisplay.printSensorInfo(*sensorService.getSensorInfo()) # Display updated information on LCD
     # print(coolSideSensor.getTemp() + " " + coolSideSensor.getHumidity() + " " +  warmSideSensor.getTemp() + " " + warmSideSensor.getHumidity())
 
 
