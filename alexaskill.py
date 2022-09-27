@@ -1,9 +1,9 @@
 import logging
 import os
+from SensorService import SensorService
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
 import RPi.GPIO as GPIO
-
 
 # This module handles the device-hosted backend of the alexa skill. It maps different intents and 
 # utterances that we can expect to recieve to specific responses. 
