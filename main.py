@@ -1,31 +1,24 @@
-import os
-import stat
-import time
-import Settings
 from LcdHelper import LcdHelper
 from SensorService import SensorService
-from alexaSkill import alexaSkill
+import alexaSkill
+import threading
 
 # Here is the main loop of the program. Most of the logic is taken care of 
 # externally, so it's pretty bare. 
 
-# Create instances of objects to handle the sensors and LC
+# Create instances of objects to handle the sensors and LCD
 sensorService = SensorService()
 statDisplay = LcdHelper()
-alexaSkill = alexaSkill()
 
-alexaSkill.app.run(debug=True)
+# Spin off flask app on a new thread targeting a lambda for the run function
+threading.Thread(target = lambda: alexaSkill.app.run(debug=False)).start()
 
-#if 'ASK_VERIFY_REQUESTS' in os.environ:
-    #verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
-    #if verify == 'false':
-        #alexaSkill.app.config['ASK_VERIFY_REQUESTS'] = False
-    #alexaSkill.app.run(debug=True)
-
+# main loop for updating information in system
 while(True):
     SensorService.update() # Update sensor
-    statDisplay.printSensorInfo(*sensorService.getSensorInfo()) # Display updated information on LCD
-    
+    sensorData = sensorService.getSensorInfo()
+    statDisplay.printSensorInfo(*sensorData) # Display updated information on LCD
+    alexaSkill.updateKnownData(*sensorData)
     
     
     # print(coolSideSensor.getTemp() + " " + coolSideSensor.getHumidity() + " " +  warmSideSensor.getTemp() + " " + warmSideSensor.getHumidity())
