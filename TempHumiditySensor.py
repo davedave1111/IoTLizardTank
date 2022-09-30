@@ -1,5 +1,4 @@
 import adafruit_dht
-import board
 
 # This class more or less is acting like a wrapper around the base 
 # adafruit_dht.DHT22 class. It allows us to create instances of 

@@ -1,6 +1,6 @@
 import logging
 from flask import Flask
-from flask_ask import Ask, request, session, question, statement
+from flask_ask import Ask, question, statement
 
 # This module handles the device-hosted backend of the alexa skill. It maps different intents and 
 # utterances that we can expect to recieve to specific responses. 
@@ -26,11 +26,13 @@ coolSideHumidity = '1'
 warmSideTemp = '1'
 warmSideHumidity = '1'
 
+# Create a flask app
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
 def updateKnownData(coolSide_Temp, coolSide_Humidity, warmSide_Temp, warmSide_Humidity):
+    # This method takes 4 string arguments, returns nothing. Used to grab updated sensor values from main
     global coolSideTemp
     global coolSideHumidity
     global warmSideTemp 
@@ -41,6 +43,8 @@ def updateKnownData(coolSide_Temp, coolSide_Humidity, warmSide_Temp, warmSide_Hu
     warmSideTemp = warmSide_Temp
     warmSideHumidity = warmSide_Humidity
     return
+
+# Below are the functions with decorators referring to our ask app to properly handle requests we may get from alexa
 
 @ask.launch
 def launch():

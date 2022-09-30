@@ -1,4 +1,3 @@
-from signal import signal, SIGTERM, SIGHUP, pause
 from rpi_lcd import LCD
 # This class just gives wraps the existing LCD class and provides a 
 # method to display our formated sensor data 
